@@ -5,6 +5,17 @@
 }
 
 <h2>Список процессов</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4">
+            <button class="btn btn-danger" value="killall" onclick="StopAll()">Оставить все</button>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <button class="btn btn-primary" value="runall" onclick="RunAll()">Запустить все</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
 <table class="table">
     <thead>
         <tr>
@@ -21,21 +32,29 @@
         @foreach (var proc in Model.ProcessesList)
         {
             <tr>
-                <td>@proc.Name</td>
-                <td>@proc.FileName</td>
-                <td>@proc.Directory</td>
-                <td>@proc.Agruments</td>
-                <td id="@proc.FileName.Replace(".exe","")">@proc.Show</td>
-                <td><button onclick="Start('@proc.Name','@proc.FileName' ,'@proc.Directory.Replace("\\","\\\\")' ,'@proc.Agruments')">Start</button></td>
+                <td class="p-1">@proc.Name</td>
+                <td class="p-1">@proc.FileName</td>
+                <td class="p-1">@proc.Directory</td>
+                <td class="p-1">@proc.Agruments</td>
+                @if (proc.Show == true) {
+                                <td id="@proc.FileName.Replace(".exe","")" class="status p-1"><span class="bg-success text-light p-1">@proc.Show</span></td>
+                }
+                else {
+                    <td id="@proc.FileName.Replace(".exe","")" class="status p-1"><span class="bg-danger text-light p-1">@proc.Show</span></td>
+                }
+                <td class="p-1"><button class="btn btn-primary" onclick="Start('@proc.Name','@proc.FileName' ,'@proc.Directory.Replace("\\","\\\\")' ,'@proc.Agruments')">Start</button></td>
                 @* <td>
             <button type="button" value="Start" onclick="Test('@proc.Name','@proc.FileName','@proc.Directory.Replace("\\","\\\\")')">Start</button>
             </td> *@
-                <td><button onclick="Stop('@proc.FileName')">Stop</button></td>
+                <td class="p-1"><button class="btn btn-danger" onclick="Stop('@proc.FileName')">Stop</button></td>
             </tr>
         }
         
     </tbody>
 </table>
+</div>
+</div>
+</div>
 
 
 
@@ -64,7 +83,7 @@
 
             $.ajax(settings).done(function (response) {
                 if (response == true) {
-                    $('#'+filename.replace(".exe","")).text('True');
+                    $('#' + filename.replace(".exe", "")).html('<span class="bg-success text-light p-1">True</span>');
                 }
             });
         }
@@ -90,7 +109,39 @@
 
             $.ajax(settings).done(function (response) {
                 if (response == true) {
-                    $('#' + filename.replace(".exe", "")).text('False');
+                    $('#' + filename.replace(".exe", "")).html('<span class="bg-danger text-light p-1">False</span>');
+                }
+            });
+        }
+        function StopAll() {
+            var settings = {
+                "url": "https://46.22.247.253:5003/api/Proc/StopAll",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response == true) {
+                    $('.status').html('<span class="bg-danger text-light p-1">False</span>');
+                }
+            });
+        }
+        function RunAll() {
+            var settings = {
+                "url": "https://46.22.247.253:5003/api/Proc/RunAll",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response == true) {
+                    $('.status').html('<span class="bg-success text-light p-1">True</span>');
                 }
             });
         }

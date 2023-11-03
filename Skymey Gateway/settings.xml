@@ -7,11 +7,5 @@
 			<FileName>Skymey_Binance_Prices.exe</FileName>
 			<Agruments></Agruments>
 		</Process>
-		<Process>
-			<Name>Binance get prices2</Name>
-			<Directory>C:\Users\New\Desktop\Skymey\2</Directory>
-			<FileName>Skymey_Binance_Priceds2.exe</FileName>
-			<Agruments>3</Agruments>
-		</Process>
 	</Processes>
 </starts>

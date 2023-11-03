@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Skymey_Gateway.Actions.XML;
 using Skymey_Gateway.Data;
 using Skymey_Gateway.Interfaces.JWT;
 using Skymey_Gateway.Models;
@@ -79,7 +80,7 @@ namespace Skymey_Gateway.Controllers
                 int i = 0;
                 foreach (Process theprocess in processlist)
                 {
-                    Console.WriteLine(@"Process: " + theprocess.ProcessName + " ID: " + theprocess.Id + "");
+                    Console.WriteLine(@"Process kill: " + theprocess.ProcessName + " ID: " + theprocess.Id + "");
                     processes[i] = theprocess.Id;
                     theprocess.Kill();
                     i++;
@@ -90,6 +91,52 @@ namespace Skymey_Gateway.Controllers
             {
                 return false;
             }
+        }
+        [HttpPost]
+        [Route("StopAll")]
+        public bool StopAll()
+        {
+            foreach (var item in new XMLSettings().GetXmlData())
+            {
+                item.FileName = item.FileName.Replace(".exe", "");
+                Console.WriteLine($"Ищу: {item.FileName}");
+                Process[] processlist = Process.GetProcessesByName(item.FileName);
+                Console.WriteLine(processlist.Length);
+                if (processlist.Length > 0)
+                {
+                    foreach (Process theprocess in processlist)
+                    {
+                        Console.WriteLine(@"Process kill: " + theprocess.ProcessName + " ID: " + theprocess.Id + "");
+                        theprocess.Kill();
+                    }
+                }
+            }
+            return true;
+        }
+        [HttpPost]
+        [Route("RunAll")]
+        public bool RunAll()
+        {
+            foreach (var pl in new XMLSettings().GetXmlData())
+            {
+                if (pl.Agruments == "None")
+                {
+                    pl.Agruments = "";
+                }
+                var proc = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = pl.Directory + pl.FileName,
+                        Arguments = pl.Agruments,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true,
+                    }
+                };
+                proc.Start();
+            }
+            return true;
         }
     }
 }
