@@ -40,7 +40,7 @@ namespace Skymey_Gateway.Controllers
                     Arguments = "command line arguments to your executable",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    CreateNoWindow = true
+                    CreateNoWindow = true,
                 }
             };
             proc.Start();
