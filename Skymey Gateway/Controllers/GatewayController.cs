@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Skymey_Gateway.Data;
 using Skymey_Gateway.Interfaces.JWT;
+using System.Diagnostics;
 
 namespace Skymey_Gateway.Controllers
 {
@@ -28,10 +29,61 @@ namespace Skymey_Gateway.Controllers
         }
 
         [HttpGet]
-        [Route("GetUsers")]
-        public string Index()
+        [Route("Run")]
+        public string Run()
         {
+            var proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = @"C:\Users\New\Desktop\Skymey\Skymey_Binance_Prices.exe",
+                    Arguments = "command line arguments to your executable",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+            proc.Start();
             return "ok";
+        }
+
+        [HttpGet]
+        [Route("getlist")]
+        public int[] getlist()
+        {
+            Process[] processlist = Process.GetProcessesByName("Skymey_Binance_Prices");
+            int[] processes = new int[processlist.Length];
+            int i = 0;
+            foreach(Process theprocess in processlist)
+            {
+                Console.WriteLine(@"Process: "+theprocess.ProcessName+" ID: "+theprocess.Id+"");
+                processes[i] = theprocess.Id;
+                i++;
+            }
+            return processes;
+        }
+        [HttpPost]
+        [Route("kill")]
+        public bool kill()
+        {
+            Process[] processlist = Process.GetProcessesByName("Skymey_Binance_Prices");
+            int[] processes = new int[processlist.Length];
+            if (processlist.Length > 0)
+            {
+                int i = 0;
+                foreach (Process theprocess in processlist)
+                {
+                    Console.WriteLine(@"Process: " + theprocess.ProcessName + " ID: " + theprocess.Id + "");
+                    processes[i] = theprocess.Id;
+                    theprocess.Kill();
+                    i++;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
