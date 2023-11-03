@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Skymey_Gateway.Data;
 using Skymey_Gateway.Interfaces.JWT;
+using Skymey_Gateway.Models;
 using System.Diagnostics;
 
 namespace Skymey_Gateway.Controllers
 {
     [ApiController]
-    [Route("api/User")]
+    [Route("api/Proc")]
     public class GatewayController : ControllerBase
     {
         private readonly JWTSettings _options;
@@ -28,23 +29,27 @@ namespace Skymey_Gateway.Controllers
             _config = config;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Run")]
-        public string Run()
+        public bool Run(ProcessesList pl)
         {
+            if (pl.Agruments == "None")
+            {
+                pl.Agruments = "";
+            }
             var proc = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = @"C:\Users\New\Desktop\Skymey\Skymey_Binance_Prices.exe",
-                    Arguments = "command line arguments to your executable",
+                    FileName = pl.Directory+pl.FileName,
+                    Arguments = pl.Agruments,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true,
                 }
             };
             proc.Start();
-            return "ok";
+            return true;
         }
 
         [HttpGet]
@@ -64,9 +69,10 @@ namespace Skymey_Gateway.Controllers
         }
         [HttpPost]
         [Route("kill")]
-        public bool kill()
+        public bool kill(ProcessesList pl)
         {
-            Process[] processlist = Process.GetProcessesByName("Skymey_Binance_Prices");
+            pl.FileName = pl.FileName.Replace(".exe", "");
+            Process[] processlist = Process.GetProcessesByName(pl.FileName);
             int[] processes = new int[processlist.Length];
             if (processlist.Length > 0)
             {

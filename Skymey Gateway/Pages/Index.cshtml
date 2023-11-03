@@ -1,0 +1,98 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Список процессов";
+}
+
+<h2>Список процессов</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Процесс</th>
+            <th scope="col">Файл</th>
+            <th scope="col">Директория</th>
+            <th scope="col">Параметры</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Старт</th>
+            <th scope="col">Стоп</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var proc in Model.ProcessesList)
+        {
+            <tr>
+                <td>@proc.Name</td>
+                <td>@proc.FileName</td>
+                <td>@proc.Directory</td>
+                <td>@proc.Agruments</td>
+                <td id="@proc.FileName.Replace(".exe","")">@proc.Show</td>
+                <td><button onclick="Start('@proc.Name','@proc.FileName' ,'@proc.Directory.Replace("\\","\\\\")' ,'@proc.Agruments')">Start</button></td>
+                @* <td>
+            <button type="button" value="Start" onclick="Test('@proc.Name','@proc.FileName','@proc.Directory.Replace("\\","\\\\")')">Start</button>
+            </td> *@
+                <td><button onclick="Stop('@proc.FileName')">Stop</button></td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
+
+
+
+@section Scripts
+{
+    <script>
+        function Start(name,filename,directory,argruments) {
+            var dataO = {
+                Name: name,
+                Directory: directory,
+                FileName: filename,
+                Agruments: argruments
+            };
+
+            var json = JSON.stringify(dataO);
+
+            var settings = {
+                "url": "https://46.22.247.253:5003/api/Proc/Run",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                },
+                "data": json,
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response == true) {
+                    $('#'+filename.replace(".exe","")).text('True');
+                }
+            });
+        }
+        function Stop(filename) {
+            var dataO = {
+                Name: "",
+                Directory: "",
+                FileName: filename,
+                Agruments: ""
+            };
+
+            var json = JSON.stringify(dataO);
+
+            var settings = {
+                "url": "https://46.22.247.253:5003/api/Proc/Kill",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                },
+                "data": json,
+            };
+
+            $.ajax(settings).done(function (response) {
+                if (response == true) {
+                    $('#' + filename.replace(".exe", "")).text('False');
+                }
+            });
+        }
+    </script>
+} 

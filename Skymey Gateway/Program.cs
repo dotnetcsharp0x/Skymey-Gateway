@@ -17,7 +17,7 @@ using Skymey_Gateway.Actions.JWT;
 var builder = WebApplication.CreateBuilder(args);
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
-
+builder.Services.AddRazorPages();
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
     builder.AllowAnyMethod()
@@ -107,7 +107,7 @@ builder.Services.AddTransient<ITokenService, CreateJWTToken>();
 var app = builder.Build();
 
 app.UseHttpsRedirection().UseCertificateForwarding().UseCors().UseHsts();
-
+app.UseStaticFiles();
 
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -115,6 +115,7 @@ app.UseSwaggerUI();
 app.UseCors("MyPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapRazorPages();
 
 app.MapControllers();
 app.Run();

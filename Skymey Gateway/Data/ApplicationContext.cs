@@ -1,6 +1,8 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Skymey_Gateway.Models;
+using Skymey_Gateway.Models.Tables.User;
 
 namespace Skymey_Gateway.Data
 {
@@ -18,7 +20,7 @@ namespace Skymey_Gateway.Data
             //modelBuilder.Entity<SG_010>().HasKey(u => new { u.SG010_Id });
         }
 
-        //public DbSet<SU_001> SU_001 { get; set; }
+        public DbSet<SU_001> SU_001 { get; set; }
         //public DbSet<SG_001> SG_001 { get; set; }
 
         //public DbSet<SG_010> SG_010 { get; set; }
