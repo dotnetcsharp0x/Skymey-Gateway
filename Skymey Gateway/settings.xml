@@ -3,8 +3,14 @@
 	<Processes>
 		<Process>
 			<Name>Binance get prices</Name>
-			<Directory>C:\Users\New\Desktop\Skymey\</Directory>
+			<Directory>C:\Users\New\Desktop\Skymey\binance-kandles\</Directory>
 			<FileName>Skymey_Binance_Prices.exe</FileName>
+			<Agruments></Agruments>
+		</Process>
+		<Process>
+			<Name>Exchanges from dia</Name>
+			<Directory>C:\Users\New\Desktop\Skymey\dia-exchanges\</Directory>
+			<FileName>Skymey-dia-exchanges.exe</FileName>
 			<Agruments></Agruments>
 		</Process>
 	</Processes>
