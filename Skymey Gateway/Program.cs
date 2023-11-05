@@ -72,7 +72,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
         listenOptions.UseHttps("certificate_cert_out.pfx", "1234");
     });
 });
-
+builder.WebHost.UseUrls("http://192.168.1.85:5002;https://192.168.1.85:5003;");
 #region Auth
 builder.Services.AddOptions();
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JWTSettings")); // Сопоставление JWTSettings с файлом конфигурации appsettings.json
