@@ -15,7 +15,7 @@ namespace Skymey_Gateway.Actions.XML
 
         public XMLSettings()
         {
-            #region XML connect - settings.xml
+            #region XML connect - process_settings.xml
             _xApi = new XmlDocument();
             _xApi.Load("C:\\Users\\New\\Desktop\\Skymey\\process_settings.xml");
             _xRootApi = _xApi.DocumentElement;

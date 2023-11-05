@@ -2,6 +2,18 @@
 <starts>
 	<Processes>
 		<Process>
+			<Name>User service</Name>
+			<Directory>C:\Users\New\source\repos\Anevo\bin\Debug\net7.0\</Directory>
+			<FileName>Anevo.exe</FileName>
+			<Agruments></Agruments>
+		</Process>
+		<Process>
+			<Name>Gateaway</Name>
+			<Directory>C:\Users\New\source\repos\Skymey Gateway\Skymey Gateway\bin\Debug\net8.0\</Directory>
+			<FileName>Skymey Gateway.exe</FileName>
+			<Agruments></Agruments>
+		</Process>
+		<Process>
 			<Name>Binance get prices</Name>
 			<Directory>C:\Users\New\Desktop\Skymey\binance-kandles\</Directory>
 			<FileName>Skymey_Binance_Prices.exe</FileName>

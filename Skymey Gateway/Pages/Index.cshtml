@@ -1,17 +1,17 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Список процессов";
+    ViewData["Title"] = "Process list";
 }
 
-<h2>Список процессов</h2>
+<h2>Process list</h2>
 <div class="container">
     <div class="row">
         <div class="col-xs-6 col-sm-4">
-            <button class="btn btn-danger" value="killall" onclick="StopAll()">Оставить все</button>
+            <button class="btn btn-danger" value="killall" onclick="StopAll()">Stop all</button>
         </div>
         <div class="col-xs-6 col-sm-4">
-            <button class="btn btn-primary" value="runall" onclick="RunAll()">Запустить все</button>
+            <button class="btn btn-primary" value="runall" onclick="RunAll()">Start all</button>
         </div>
     </div>
     <div class="row">
@@ -19,13 +19,13 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Процесс</th>
-            <th scope="col">Файл</th>
-            <th scope="col">Директория</th>
-            <th scope="col">Параметры</th>
-            <th scope="col">Статус</th>
-            <th scope="col">Старт</th>
-            <th scope="col">Стоп</th>
+            <th scope="col">Proecess</th>
+            <th scope="col">File</th>
+            <th scope="col">Directory</th>
+            <th scope="col">Params</th>
+            <th scope="col">Status</th>
+            <th scope="col">Start</th>
+            <th scope="col">Stop</th>
         </tr>
     </thead>
     <tbody>
