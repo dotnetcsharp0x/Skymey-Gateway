@@ -45,11 +45,12 @@ namespace Skymey_Gateway.Controllers
                     FileName = pl.Directory+pl.FileName,
                     Arguments = pl.Agruments,
                     UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true,
+                    RedirectStandardOutput = false,
+                    CreateNoWindow = false,
+                    RedirectStandardError = false,
+                    RedirectStandardInput = false,
                 }
-            };
-            proc.Start();
+            }.Start();
             return true;
         }
 

@@ -9,8 +9,14 @@
 		</Process>
 		<Process>
 			<Name>Gateaway</Name>
-			<Directory>C:\Users\New\source\repos\Skymey Gateway\Skymey Gateway\bin\Debug\net8.0\</Directory>
-			<FileName>Skymey Gateway.exe</FileName>
+			<Directory>C:\Users\New\source\repos\Skymey-main-gateaway\Skymey-main-gateaway\bin\Debug\net8.0\</Directory>
+			<FileName>Skymey-main-gateaway.exe</FileName>
+			<Agruments></Agruments>
+		</Process>
+		<Process>
+			<Name>Getting data mongodb</Name>
+			<Directory>C:\Users\New\source\repos\Skymey-mongodb\Skymey-mongodb\bin\Debug\net8.0\</Directory>
+			<FileName>Skymey-mongodb.exe</FileName>
 			<Agruments></Agruments>
 		</Process>
 		<Process>
@@ -21,7 +27,7 @@
 		</Process>
 		<Process>
 			<Name>Exchanges from dia</Name>
-			<Directory>C:\Users\New\Desktop\Skymey\dia-exchanges\</Directory>
+			<Directory>C:\Users\New\source\repos\Skymey-dia-exchanges\Skymey-dia-exchanges\bin\Debug\net8.0\</Directory>
 			<FileName>Skymey-dia-exchanges.exe</FileName>
 			<Agruments></Agruments>
 		</Process>
