@@ -1,8 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Skymey_Gateway.Models;
-using Skymey_Gateway.Models.Tables.User;
+using Skymey_main_lib.Models.Tables.User;
 
 namespace Skymey_Gateway.Data
 {

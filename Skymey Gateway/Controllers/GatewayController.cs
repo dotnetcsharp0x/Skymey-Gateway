@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Skymey_Gateway.Actions.XML;
 using Skymey_Gateway.Data;
-using Skymey_Gateway.Interfaces.JWT;
-using Skymey_Gateway.Models;
+using Skymey_main_lib.Interfaces.JWT;
+using Skymey_main_lib.Models;
 using System.Diagnostics;
 
 namespace Skymey_Gateway.Controllers

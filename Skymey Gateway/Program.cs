@@ -7,12 +7,12 @@ using Skymey_Gateway;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.OpenApi.Models;
 using Skymey_Gateway.Data;
-using Skymey_Gateway.Interfaces.JWT;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using System.Security.Cryptography.X509Certificates;
 using Skymey_Gateway.Actions.JWT;
+using Skymey_main_lib.Interfaces.JWT;
 
 var builder = WebApplication.CreateBuilder(args);
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");

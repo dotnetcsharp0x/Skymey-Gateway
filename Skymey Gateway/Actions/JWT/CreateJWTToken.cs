@@ -1,12 +1,11 @@
 ﻿using Skymey_Gateway.Data;
-using Skymey_Gateway.Interfaces.JWT;
-using Skymey_Gateway.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Skymey_main_lib.Interfaces.JWT;
 
 namespace Skymey_Gateway.Actions.JWT
 {

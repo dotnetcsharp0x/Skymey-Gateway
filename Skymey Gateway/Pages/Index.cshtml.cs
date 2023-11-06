@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Skymey_Gateway.Actions.XML;
 using Skymey_Gateway.Data;
-using Skymey_Gateway.Models;
-using Skymey_Gateway.Models.Tables.User;
+using Skymey_main_lib.Models;
 using System.Diagnostics;
 using System.Xml;
 
