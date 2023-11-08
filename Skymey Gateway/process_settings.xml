@@ -20,9 +20,9 @@
 			<Agruments></Agruments>
 		</Process>
 		<Process>
-			<Name>Binance get prices</Name>
-			<Directory>C:\Users\New\Desktop\Skymey\binance-kandles\</Directory>
-			<FileName>Skymey_Binance_Prices.exe</FileName>
+			<Name>Polygon get prices</Name>
+			<Directory>C:\Users\New\source\repos\Skymey-stocks-polygon\Skymey-stocks-polygon\bin\Debug\net8.0\</Directory>
+			<FileName>Skymey-stocks-polygon.exe</FileName>
 			<Agruments></Agruments>
 		</Process>
 		<Process>
